@@ -13,7 +13,7 @@ import {
   currentLoadingState,
   currentBreed
 } from '../reducers/currentDog';
-import { useStyles } from './ExampleCardStyles';
+import { useStyles } from './FinderCardStyles';
 import { addDogToHistory } from '../reducers/dogHistory';
 import { useAppDispatch, useAppSelector } from '../store/store';
 

@@ -1,9 +1,9 @@
 import { Container } from '@mui/material';
 
 import { useStyles } from './homePageStyles';
-import { DogCard } from '../components/DogCard';
-import { ExampleCard } from '../components/ExampleCard';
-import { HistoryCard } from '../components/HistoryCard';
+import { DogCard } from './body/DogCard';
+import { ExampleCard } from './body/FinderCard';
+import { HistoryCard } from './body/HistoryCard';
 
 
 
