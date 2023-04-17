@@ -2,7 +2,7 @@ import Typography from '@mui/material/Typography';
 import { CircularProgress } from '@mui/material';
 
 import { useStyles } from './DogCardStyles';
-import { currentLoadingState } from '../../slices/currentDog';
+import { currentLoadingState } from '../../store/slices/currentDog';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 
 
