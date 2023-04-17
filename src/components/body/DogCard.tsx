@@ -6,59 +6,47 @@ import { useAppDispatch, useAppSelector } from 'store/store';
 
 import { useStyles } from './DogCardStyles';
 
-
 export const DogCard = () => {
-  const { classes } = useStyles();
-  const dogPic = useAppSelector((state) => state.currentDog.image);
-  const loading = useAppSelector((state) => state.currentDog.loading);
-  const errorMessage = useAppSelector((state) => state.currentDog.errorMessage);
-  const dogBreed = useAppSelector((state) => state.currentDog.breed);
-  const dispatch = useAppDispatch();
+    const { classes } = useStyles();
+    const dogPic = useAppSelector((state) => state.currentDog.image);
+    const loading = useAppSelector((state) => state.currentDog.loading);
+    const errorMessage = useAppSelector(
+        (state) => state.currentDog.errorMessage
+    );
+    const dogBreed = useAppSelector((state) => state.currentDog.breed);
+    const dispatch = useAppDispatch();
 
-  const cardImage = (src: string) =>
-    <div className={classes.image}>
-      <img
-        alt="doggo"
-        className={classes.img}
-        onLoad={() => dispatch(currentLoadingState({ loading: false }))}
-        src={src}
-      >
-      </img>
-    </div>
-
-  const cardError = (message: string) => <Typography>{message}</Typography>
-
-  const cardBreed = (message: string) => <Typography className={classes.breed}>{message}</Typography>
-
-  return (
-    <div className={classes.root}>
-      {
-        dogBreed && !errorMessage ?
-        cardBreed(dogBreed) :
-        cardBreed('No breed...')
-      }
-      {
-        dogPic ?
-          cardImage(dogPic) :
-          ''
-      }
-      <div className={classes.cardContent}>
-        {
-          !loading && !dogPic && !errorMessage ?
-            <Typography>Waiting for doggo search...</Typography> :
-            ''
-        }
-        {
-          loading ?
-            <CircularProgress size="80px" color="primary"></CircularProgress> :
-            ''
-        }
-        {
-          errorMessage && !dogPic && !loading ?
-            cardError(errorMessage) :
-            ''
-        }
-      </div>
-    </div>
-  );
-}
+    return (
+        <div className={classes.root}>
+            <Typography className={classes.breed}>
+                {loading
+                    ? 'loading...'
+                    : dogBreed && !errorMessage
+                    ? dogBreed
+                    : 'No breed...'}
+            </Typography>
+            {dogPic && (
+                <div className={classes.image}>
+                    <img
+                        alt='doggo'
+                        className={classes.img}
+                        onLoad={() => {
+                            dispatch(currentLoadingState({ loading: false }));
+                        }}
+                        src={dogPic}
+                    />
+                </div>
+            )}
+            <div className={classes.cardContent}>
+                {loading && <CircularProgress size='80px' color='primary' />}
+                {!dogPic &&
+                    !loading &&
+                    (errorMessage ? (
+                        <Typography>{errorMessage}</Typography>
+                    ) : (
+                        <Typography>Waiting for doggo search...</Typography>
+                    ))}
+            </div>
+        </div>
+    );
+};
