@@ -1,10 +1,9 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { CardMedia, CircularProgress } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../store/store';
+import { CircularProgress } from '@mui/material';
+
 import { useStyles } from './DogCardStyles';
 import { currentLoadingState } from '../reducers/currentDog';
+import { useAppDispatch, useAppSelector } from '../store/store';
 
 
 export const DogCard = () => {
@@ -16,7 +15,7 @@ export const DogCard = () => {
   const dispatch = useAppDispatch();
 
   const cardImage = (src: string) =>
-    <CardMedia className={classes.image}>
+    <div className={classes.image}>
       <img
         alt="doggo"
         className={classes.img}
@@ -24,14 +23,14 @@ export const DogCard = () => {
         src={src}
       >
       </img>
-    </CardMedia>
+    </div>
 
   const cardError = (message: string) => <Typography>{message}</Typography>
 
   const cardBreed = (message: string) => <Typography className={classes.breed}>{message}</Typography>
 
   return (
-    <Card className={classes.root}>
+    <div className={classes.root}>
       {
         dogBreed && !errorMessage ?
         cardBreed(dogBreed) :
@@ -42,7 +41,7 @@ export const DogCard = () => {
           cardImage(dogPic) :
           ''
       }
-      <CardContent className={classes.cardContent}>
+      <div className={classes.cardContent}>
         {
           !loading && !dogPic && !errorMessage ?
             <Typography>Waiting for doggo search...</Typography> :
@@ -58,7 +57,7 @@ export const DogCard = () => {
             cardError(errorMessage) :
             ''
         }
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

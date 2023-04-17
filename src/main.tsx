@@ -1,14 +1,14 @@
-import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
+import { persistStore } from 'redux-persist';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material';
+
+import './index.css';
 import App from './App';
 import theme from './theme';
-import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom';
 import { store } from './store/store'
-import { StyledEngineProvider, ThemeProvider } from '@mui/material';
-import './index.css'
-import { PersistGate } from 'redux-persist/integration/react';
-import { persistStore } from 'redux-persist';
 
 const persistor = persistStore(store)
 

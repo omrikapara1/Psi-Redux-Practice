@@ -26,6 +26,7 @@ export const useStyles = makeStyles()({
   },
   actions: {
     display: 'flex',
-    justifyContent: 'center'
+    flexDirection: 'column',
+    justifyContent: 'center',
   }
 });

@@ -5,7 +5,7 @@ export const useStyles = makeStyles()({
       width: 275,
       height: 275,
       alignSelf: 'middle',
-      justifySelf: 'start'
+      justifySelf: 'start',
     },
     content: {
       alignItems: 'center',
@@ -14,8 +14,8 @@ export const useStyles = makeStyles()({
     },
     button: {
       marginTop: '10px',
-      height: '7vh',
-      width: '90%'
+      // height: '7vh',
+      // width: '90%'
     },
     input: {
       width: '90%'

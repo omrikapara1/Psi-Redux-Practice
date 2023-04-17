@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import {
+  CircularProgress,
+  Select,
+  MenuItem
+} from '@mui/material';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { CardHeader, CircularProgress, Select, MenuItem } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../store/store';
+
+import {
+  currentErrorState,
+  currentImage,
+  currentLoadingState,
+  currentBreed
+} from '../reducers/currentDog';
 import { useStyles } from './ExampleCardStyles';
-import { currentErrorState, currentImage, currentLoadingState, currentBreed } from '../reducers/currentDog';
 import { addDogToHistory } from '../reducers/dogHistory';
+import { useAppDispatch, useAppSelector } from '../store/store';
 
 const RANDOM_DOG_VALUE = 'Random'
 const breeds = [RANDOM_DOG_VALUE, 'error', 'basenji', "affenpinscher", "african", "airedale", "akita", "appenzeller"];
@@ -53,11 +61,11 @@ export const ExampleCard = () => {
   };
 
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        title={<Typography variant="h5" component="h2">Find Doggo</Typography>}>
-      </CardHeader>
-      <CardContent className={classes.content}>
+    <div className={classes.root}>
+      <div>
+        <Typography variant="h5" component="h2">Find Doggo</Typography>
+      </div>
+      <div className={classes.content}>
         <Select
           value={dogName}
           className={classes.input}
@@ -86,7 +94,7 @@ export const ExampleCard = () => {
                 <Typography>get random doggo</Typography>
           }
         </Button>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };

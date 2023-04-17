@@ -1,14 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { CardHeader } from '@mui/material';
-import { CardActions } from '@mui/material';
 import { useStyles } from './HistoryStyles';
-import { useAppDispatch, useAppSelector } from '../store/store';
-import { DogHistoryData, resetHistory } from '../reducers/dogHistory';
-import { currentImage, resetCurrent } from '../reducers/currentDog';
+import Typography from '@mui/material/Typography';
+
 import { currentBreed } from '../reducers/currentDog';
+import { useAppDispatch, useAppSelector } from '../store/store';
+import { currentImage, resetCurrent } from '../reducers/currentDog';
+import { DogHistoryData, resetHistory } from '../reducers/dogHistory';
 
 export const HistoryCard = () => {
   const { classes } = useStyles();
@@ -26,11 +22,11 @@ export const HistoryCard = () => {
   };
 
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        title={<Typography variant="h5" component="h2">History</Typography>}>
-      </CardHeader>
-      <CardContent className={classes.cardContent}>
+    <div className={classes.root}>
+      <div>
+        <Typography variant="h5" component="h2">History</Typography>
+      </div>
+      <div className={classes.cardContent}>
         {
           <table className={classes.table}>
             <thead>
@@ -55,10 +51,10 @@ export const HistoryCard = () => {
             </tbody>
           </table>
         }
-      </CardContent>
-      <CardActions className={classes.actions}>
+      </div>
+      <div className={classes.actions}>
         <button onClick={onReset}>Reset History</button>
-      </CardActions>
-    </Card>
+      </div>
+    </div>
   );
 };

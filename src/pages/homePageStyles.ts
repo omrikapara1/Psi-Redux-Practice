@@ -4,9 +4,16 @@ export const useStyles = makeStyles()({
     root: {
       textAlign: "center",
       display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      height: '100vh',
-      width: '100%'
+      alignItems: 'start',
+      justifyContent: 'center',
+      height: '77vh',
+      width: '100%',
+      gap: '30px'
+    },
+    title: {
+      fontSize: '3em',
+      textAlign: 'center',
+      marginTop: '100px',
+      marginBottom: '40px',
     }
   });
