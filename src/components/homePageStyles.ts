@@ -7,7 +7,7 @@ export const useStyles = makeStyles({ name: 'homePage' })({
         alignItems: 'start',
         justifyContent: 'space-between',
         height: '73vh',
-        width: '100%',
+        padding: '0px 10px',
     },
     title: {
         fontSize: '3em',

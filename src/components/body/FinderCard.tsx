@@ -78,7 +78,6 @@ export const FinderCard = () => {
                 <Select
                     value={dogName}
                     className={classes.input}
-                    label='Select dog name...'
                     onChange={dogSelectChange}
                 >
                     {breeds.map((breed) => (

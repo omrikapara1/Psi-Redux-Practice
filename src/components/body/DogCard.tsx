@@ -35,18 +35,24 @@ export const DogCard = () => {
                         }}
                         src={dogPic}
                     />
+                    {loading && (
+                        <CircularProgress
+                            size='80px'
+                            color='primary'
+                            className={classes.imageLoading}
+                        />
+                    )}
                 </div>
             )}
-            <div className={classes.cardContent}>
-                {loading && <CircularProgress size='80px' color='primary' />}
-                {!dogPic &&
-                    !loading &&
-                    (errorMessage ? (
-                        <Typography>{errorMessage}</Typography>
-                    ) : (
-                        <Typography>Waiting for doggo search...</Typography>
-                    ))}
-            </div>
+            {/* <div className={classes.cardContent}> */}
+            {!dogPic &&
+                !loading &&
+                (errorMessage ? (
+                    <Typography>{errorMessage}</Typography>
+                ) : (
+                    <Typography>Waiting for doggo search...</Typography>
+                ))}
+            {/* </div> */}
         </div>
     );
 };

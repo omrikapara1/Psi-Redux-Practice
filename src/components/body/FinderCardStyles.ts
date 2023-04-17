@@ -1,34 +1,30 @@
 import { makeStyles } from 'tss-react/mui';
 
-export const useStyles = makeStyles()({
+export const useStyles = makeStyles({ name: 'finderCard' })({
     root: {
-      width: 275,
-      height: 275,
-      alignSelf: 'middle',
-      justifySelf: 'start',
+        width: 275,
+        height: 275,
     },
     content: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: '2vh'
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '2vh',
     },
     button: {
-      marginTop: '10px',
-      // height: '7vh',
-      // width: '90%'
+        marginTop: '10px',
     },
     input: {
-      width: '90%'
+        width: '90%',
     },
     bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
     },
     title: {
-      fontSize: 14,
+        fontSize: 14,
     },
     pos: {
-      marginBottom: 12,
+        marginBottom: 12,
     },
-  });
+});

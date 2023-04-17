@@ -6,26 +6,33 @@ export const useStyles = makeStyles({
     root: {
         // minWidth: 500,
         // minHeight: 500,
+        minWidth: '50vmin',
+        minHeight: '50vmin',
     },
     cardContent: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '40%',
+        paddingTop: '40%',
     },
     image: {
-        height: 0,
-        paddingTop: '0%',
+        minWidth: '50vmin',
+        minHeight: '50vmin',
+        position: 'relative',
+    },
+    imageLoading: {
+        position: 'absolute',
+        top: 'calc(25vmin - 40px)',
+        left: 'calc(25vmin - 40px)',
     },
     img: {
         width: '50vmin',
         height: '50vmin',
-        // '--b': '5px',
-        padding: 10,
-        background:
-            'conic-gradient(from 90deg at top 5px left 5px, #0000 90deg, #b96920 0) 0 0',
-        backgroundSize: '50px 50px',
-        backgroundRepeat: 'no-repeat',
+        transition: 'transform 100000s ease',
+        // transition: 'transform 100000s cubic-bezier(0.4, 0, 0.55, 0.11)',
+        '&:hover': {
+            transform: 'scale(100)',
+        },
     },
     breed: {
         fontSize: '2em',
