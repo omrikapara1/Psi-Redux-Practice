@@ -12,8 +12,7 @@ export const useStyles = makeStyles({ name: 'homePage' })({
     title: {
         fontSize: '3em',
         textAlign: 'center',
-        marginTop: '100px',
-        marginBottom: '40px',
+        margin: '70px ',
     },
     credit: {
         fontSize: '1.2em',

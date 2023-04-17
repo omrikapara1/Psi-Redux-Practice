@@ -7,13 +7,12 @@ import { useAppDispatch, useAppSelector } from 'store/store';
 import { useStyles } from './DogCardStyles';
 
 export const DogCard = () => {
-    const { classes } = useStyles();
-    const dogPic = useAppSelector((state) => state.currentDog.image);
+    const { classes, cx } = useStyles();
+    const currentDogData = useAppSelector((state) => state.currentDog.data);
     const loading = useAppSelector((state) => state.currentDog.loading);
     const errorMessage = useAppSelector(
         (state) => state.currentDog.errorMessage
     );
-    const dogBreed = useAppSelector((state) => state.currentDog.breed);
     const dispatch = useAppDispatch();
 
     return (
@@ -21,38 +20,47 @@ export const DogCard = () => {
             <Typography className={classes.breed}>
                 {loading
                     ? 'loading...'
-                    : dogBreed && !errorMessage
-                    ? dogBreed
+                    : currentDogData && !errorMessage
+                    ? currentDogData.breed
                     : 'No breed...'}
             </Typography>
-            {dogPic && (
-                <div className={classes.image}>
-                    <img
-                        alt='doggo'
-                        className={classes.img}
-                        onLoad={() => {
-                            dispatch(currentLoadingState({ loading: false }));
-                        }}
-                        src={dogPic}
-                    />
-                    {loading && (
-                        <CircularProgress
-                            size='80px'
-                            color='primary'
-                            className={classes.imageLoading}
+            <div className={classes.image}>
+                {currentDogData ? (
+                    <>
+                        <img
+                            alt='doggo'
+                            className={classes.img}
+                            onLoad={() => {
+                                dispatch(
+                                    currentLoadingState({ loading: false })
+                                );
+                            }}
+                            src={currentDogData.image}
                         />
-                    )}
-                </div>
-            )}
-            {/* <div className={classes.cardContent}> */}
-            {!dogPic &&
-                !loading &&
-                (errorMessage ? (
+                        {loading && (
+                            <CircularProgress
+                                size='80px'
+                                color='primary'
+                                className={classes.imageLoading}
+                            />
+                        )}
+                    </>
+                ) : errorMessage ? (
                     <Typography>{errorMessage}</Typography>
                 ) : (
-                    <Typography>Waiting for doggo search...</Typography>
-                ))}
-            {/* </div> */}
+                    <>
+                        <img
+                            className={cx(classes.img, classes.waitImg)}
+                            src={
+                                'https://media.tenor.com/13VnwKt5qS0AAAAd/waiting.gif'
+                            }
+                        />
+                        <Typography className={classes.waitText}>
+                            Waiting for doggo search...
+                        </Typography>
+                    </>
+                )}
+            </div>
         </div>
     );
 };

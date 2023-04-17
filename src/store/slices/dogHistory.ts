@@ -1,30 +1,35 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { DogData } from './currentDog';
 
-export interface DogHistoryData {
-  breedName: string;
-  photoLink: string;
-  timeStamp: number;
+export interface historyDogData extends DogData {
+    timestamp: number;
 }
 
-const InitialState: { [dogs: string]: DogHistoryData[] } = {
-  dogs: []
+export interface DogHistoryState {
+    dogs: historyDogData[];
+}
+
+const initialState: DogHistoryState = {
+    dogs: [],
 };
 
 const dogHistory = createSlice({
-  name: 'dogHistory',
-  initialState: InitialState,
-  reducers: {
-    addDogToHistory: (state, action: PayloadAction<Omit<DogHistoryData, "timeStamp">>) => {
-      state.dogs.push({
-        breedName: action.payload.breedName,
-        photoLink: action.payload.photoLink,
-        timeStamp: Date.now()
-      })
+    name: 'dogHistory',
+    initialState,
+    reducers: {
+        addDogToHistory: (
+            state,
+            action: PayloadAction<Omit<DogData, 'timeStamp'>>
+        ) => {
+            state.dogs.push({
+                ...action.payload,
+                timestamp: Date.now(),
+            });
+        },
+        resetHistory: (state) => {
+            state.dogs = [];
+        },
     },
-    resetHistory: (state) => {
-      state.dogs = []
-    },
-  },
 });
 
 export const { addDogToHistory, resetHistory } = dogHistory.actions;

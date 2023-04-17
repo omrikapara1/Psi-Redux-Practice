@@ -1,12 +1,8 @@
 import Typography from '@mui/material/Typography';
 
 import { useAppDispatch, useAppSelector } from 'store/store';
-import { DogHistoryData, resetHistory } from 'store/slices/dogHistory';
-import {
-    currentImage,
-    resetCurrent,
-    currentBreed,
-} from 'store/slices/currentDog';
+import { historyDogData, resetHistory } from 'store/slices/dogHistory';
+import { resetCurrent, setCurrentData } from 'store/slices/currentDog';
 
 import { useStyles } from './HistoryStyles';
 
@@ -14,14 +10,10 @@ export const HistoryCard = () => {
     const { classes, cx } = useStyles();
     const dispatch = useAppDispatch();
     const dogHistory = useAppSelector((state) => state.dogHistory.dogs);
-    const currentDogImage = useAppSelector((state) => state.currentDog.image);
+    const currentDogId = useAppSelector((state) => state.currentDog.data?.id);
 
-    const onRowClick = ({
-        breedName,
-        photoLink,
-    }: Pick<DogHistoryData, 'breedName' | 'photoLink'>) => {
-        dispatch(currentImage({ image: photoLink }));
-        dispatch(currentBreed({ breed: breedName }));
+    const onRowClick = ({ timestamp, ...dog }: historyDogData) => {
+        dispatch(setCurrentData(dog));
     };
 
     const onReset = () => {
@@ -50,35 +42,27 @@ export const HistoryCard = () => {
                             {dogHistory
                                 .slice()
                                 .reverse()
-                                .map(({ breedName, photoLink, timeStamp }) => (
+                                .map((historyDog) => (
                                     <tr
-                                        key={photoLink + timeStamp}
+                                        key={historyDog.id}
                                         className={cx(classes.row, {
                                             [classes.selectedRow]:
-                                                photoLink === currentDogImage,
+                                                currentDogId === historyDog.id,
                                         })}
-                                        onClick={() =>
-                                            onRowClick({
-                                                breedName,
-                                                photoLink,
-                                            })
-                                        }
+                                        onClick={() => onRowClick(historyDog)}
                                     >
                                         <td className={classes.cell}>
-                                            {new Date(timeStamp)
+                                            {new Date(historyDog.timestamp)
                                                 .toString()
                                                 .substring(0, 24)}
                                         </td>
                                         <td className={classes.cell}>
-                                            {breedName}
+                                            {historyDog.breed}
                                         </td>
                                         <td className={classes.cell}>
                                             <img
-                                                src={photoLink}
-                                                style={{
-                                                    height: 25,
-                                                    width: 25,
-                                                }}
+                                                src={historyDog.image}
+                                                className={classes.previewImage}
                                             />
                                         </td>
                                     </tr>

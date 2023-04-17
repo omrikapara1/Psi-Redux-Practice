@@ -15,6 +15,7 @@ export const useStyles = makeStyles({ name: 'historyPage' })({
         borderCollapse: 'collapse',
         width: '100%',
         height: '100%',
+        border: '1px solid #dddddd',
     },
     row: {
         cursor: 'pointer',
@@ -35,5 +36,9 @@ export const useStyles = makeStyles({ name: 'historyPage' })({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+    },
+    previewImage: {
+        height: 25,
+        width: 25,
     },
 });

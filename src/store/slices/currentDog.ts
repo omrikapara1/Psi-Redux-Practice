@@ -1,48 +1,45 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-export interface IDogState {
+export interface DogData {
+    id: string;
     image: string;
     breed: string;
+}
+
+export interface CurrentDogState {
+    data?: DogData;
     loading: boolean;
     errorMessage: string;
 }
 
-const initialDogState: IDogState = {
-    image: '',
-    breed: '',
+const initialDogState: CurrentDogState = {
+    data: undefined,
     loading: false,
     errorMessage: '',
 };
+
+// const getDogId = (dog:CurrentDogState):string=> (dog.)
 
 const currentDog = createSlice({
     name: 'currentDog',
     initialState: initialDogState,
     reducers: {
-        currentImage: (
-            state,
-            action: PayloadAction<Pick<IDogState, 'image'>>
-        ) => {
-            state.image = action.payload.image;
+        setCurrentData: (state, action: PayloadAction<DogData>) => {
+            state.data = { ...action.payload };
             state.errorMessage = '';
         },
         currentLoadingState: (
             state,
-            action: PayloadAction<Pick<IDogState, 'loading'>>
+            action: PayloadAction<Pick<CurrentDogState, 'loading'>>
         ) => {
             state.loading = action.payload.loading;
         },
         currentErrorState: (
             state,
-            action: PayloadAction<Pick<IDogState, 'errorMessage'>>
+            action: PayloadAction<Pick<CurrentDogState, 'errorMessage'>>
         ) => {
             state.errorMessage = action.payload.errorMessage;
-            state.image = '';
-        },
-        currentBreed: (
-            state,
-            action: PayloadAction<Pick<IDogState, 'breed'>>
-        ) => {
-            state.breed = action.payload.breed;
+            state.data = undefined;
         },
         resetCurrent: () => {
             return { ...initialDogState };
@@ -51,10 +48,9 @@ const currentDog = createSlice({
 });
 
 export const {
-    currentImage,
+    setCurrentData,
     currentLoadingState,
     currentErrorState,
-    currentBreed,
     resetCurrent,
 } = currentDog.actions;
 

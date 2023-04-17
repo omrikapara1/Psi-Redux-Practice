@@ -16,9 +16,13 @@ export const useStyles = makeStyles({
         paddingTop: '40%',
     },
     image: {
+        border: '1px solid #dddddd',
         minWidth: '50vmin',
         minHeight: '50vmin',
         position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     imageLoading: {
         position: 'absolute',
@@ -28,6 +32,7 @@ export const useStyles = makeStyles({
     img: {
         width: '50vmin',
         height: '50vmin',
+        position: 'absolute',
         transition: 'transform 100000s ease',
         // transition: 'transform 100000s cubic-bezier(0.4, 0, 0.55, 0.11)',
         '&:hover': {
@@ -35,6 +40,12 @@ export const useStyles = makeStyles({
         },
     },
     breed: {
-        fontSize: '2em',
+        fontSize: '1.5em',
     },
+    waitText: {
+        position: 'absolute',
+    },
+    waitImg: {
+        opacity: 0.1
+    }
 });

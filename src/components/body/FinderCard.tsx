@@ -1,13 +1,13 @@
-import { CircularProgress, Select, MenuItem } from '@mui/material';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { CircularProgress, Select, MenuItem } from '@mui/material';
 
 import {
     currentErrorState,
-    currentImage,
+    setCurrentData,
     currentLoadingState,
-    currentBreed,
 } from 'store/slices/currentDog';
 import { addDogToHistory } from 'store/slices/dogHistory';
 import { useAppDispatch, useAppSelector } from 'store/store';
@@ -48,14 +48,11 @@ export const FinderCard = () => {
         await (await fetch(url)).json().then((result) => {
             if (result.status === 'success') {
                 const dogBreed = getDogBreed(result.message);
-                dispatch(currentImage({ image: result.message }));
-                dispatch(currentBreed({ breed: dogBreed }));
-                dispatch(
-                    addDogToHistory({
-                        breedName: dogBreed,
-                        photoLink: result.message,
-                    })
-                );
+                const id = uuidv4();
+                const dogData = { image: result.message, breed: dogBreed, id };
+                
+                dispatch(setCurrentData(dogData));
+                dispatch(addDogToHistory(dogData));
             } else {
                 dispatch(currentErrorState({ errorMessage: result.message }));
                 dispatch(currentLoadingState({ loading: false }));
