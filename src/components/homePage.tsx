@@ -20,6 +20,9 @@ const HomePage = () => {
         <HistoryCard />
         <DogCard />
       </div>
+      <div className={classes.credit}>
+      {'© Omri Kapara & Eran Tagansky'}
+      </div>
     </div>
   );
 }

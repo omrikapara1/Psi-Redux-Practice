@@ -6,7 +6,7 @@ export const useStyles = makeStyles()({
       display: 'flex',
       alignItems: 'start',
       justifyContent: 'center',
-      height: '77vh',
+      height: '73vh',
       width: '100%',
       gap: '30px'
     },
@@ -15,5 +15,9 @@ export const useStyles = makeStyles()({
       textAlign: 'center',
       marginTop: '100px',
       marginBottom: '40px',
+    },
+    credit: {
+      fontSize: '1.8em',
+      textAlign: 'center'
     }
   });
