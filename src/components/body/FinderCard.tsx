@@ -12,10 +12,11 @@ import {
   currentImage,
   currentLoadingState,
   currentBreed
-} from '../../store/slices/currentDog';
+} from 'store/slices/currentDog';
+import { addDogToHistory } from 'store/slices/dogHistory';
+import { useAppDispatch, useAppSelector } from 'store/store';
+
 import { useStyles } from './FinderCardStyles';
-import { addDogToHistory } from '../../store/slices/dogHistory';
-import { useAppDispatch, useAppSelector } from '../../store/store';
 
 const RANDOM_DOG_VALUE = 'Random'
 const breeds = [RANDOM_DOG_VALUE, 'error', 'basenji', "affenpinscher", "african", "airedale", "akita", "appenzeller"];

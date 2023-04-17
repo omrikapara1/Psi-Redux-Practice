@@ -1,9 +1,10 @@
-import { useStyles } from './HistoryStyles';
 import Typography from '@mui/material/Typography';
 
-import { useAppDispatch, useAppSelector } from '../../store/store';
-import { DogHistoryData, resetHistory } from '../../store/slices/dogHistory';
-import { currentImage, resetCurrent, currentBreed } from '../../store/slices/currentDog';
+import { useAppDispatch, useAppSelector } from 'store/store';
+import { DogHistoryData, resetHistory } from 'store/slices/dogHistory';
+import { currentImage, resetCurrent, currentBreed } from 'store/slices/currentDog';
+
+import { useStyles } from './HistoryStyles';
 
 export const HistoryCard = () => {
   const { classes } = useStyles();

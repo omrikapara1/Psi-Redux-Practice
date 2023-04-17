@@ -1,11 +1,12 @@
-import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-import currentDog from './slices/currentDog';
-import dogHistory from './slices/dogHistory';
+import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+
+import currentDog from './slices/currentDog';
+import dogHistory from './slices/dogHistory';
 
 const persistConfig = {
   key: 'root',

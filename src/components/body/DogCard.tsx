@@ -1,9 +1,10 @@
 import Typography from '@mui/material/Typography';
 import { CircularProgress } from '@mui/material';
 
+import { currentLoadingState } from 'store/slices/currentDog';
+import { useAppDispatch, useAppSelector } from 'store/store';
+
 import { useStyles } from './DogCardStyles';
-import { currentLoadingState } from '../../store/slices/currentDog';
-import { useAppDispatch, useAppSelector } from '../../store/store';
 
 
 export const DogCard = () => {
