@@ -1,25 +1,35 @@
 import Typography from '@mui/material/Typography';
 
-import { useAppDispatch, useAppSelector } from 'store/store';
-import { historyDogData, resetHistory } from 'store/slices/dogHistory';
-import { resetCurrent, setCurrentData } from 'store/slices/currentDog';
-
 import { useStyles } from './HistoryCardStyles';
+import { HistoryDogData } from 'models/interfaces/HistoryDogData';
+
+const mockHistoryDogs: HistoryDogData[] = [
+    {
+        id: '3',
+        breed: 'ridgeback-rhodesian',
+        image: 'https://images.dog.ceo/breeds/ridgeback-rhodesian/n02087394_4147.jpg',
+        timestamp: new Date(300000).getTime(),
+    },
+    {
+        id: '2',
+        breed: 'coonhound',
+        image: 'https://images.dog.ceo/breeds/coonhound/n02089078_80.jpg',
+        timestamp: new Date(200000).getTime(),
+    },
+    {
+        id: '1',
+        breed: 'spaniel-cocker',
+        image: 'https://images.dog.ceo/breeds/spaniel-cocker/n02102318_1983.jpg',
+        timestamp: new Date(100000).getTime(),
+    },
+];
 
 export const HistoryCard = () => {
     const { classes, cx } = useStyles();
-    const dispatch = useAppDispatch();
-    const dogHistory = useAppSelector((state) => state.dogHistory.dogs);
-    const currentDogId = useAppSelector((state) => state.currentDog.data?.id);
 
-    const onRowClick = ({ timestamp, ...dog }: historyDogData) => {
-        dispatch(setCurrentData(dog));
-    };
+    const onRowClick = (historyDog: HistoryDogData) => {};
 
-    const onReset = () => {
-        dispatch(resetHistory());
-        dispatch(resetCurrent());
-    };
+    const onReset = () => {};
 
     return (
         <div className={classes.root}>
@@ -39,34 +49,28 @@ export const HistoryCard = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {dogHistory
-                                .slice()
-                                .reverse()
-                                .map((historyDog) => (
-                                    <tr
-                                        key={historyDog.id}
-                                        className={cx(classes.row, {
-                                            [classes.selectedRow]:
-                                                currentDogId === historyDog.id,
-                                        })}
-                                        onClick={() => onRowClick(historyDog)}
-                                    >
-                                        <td className={classes.cell}>
-                                            {new Date(historyDog.timestamp)
-                                                .toString()
-                                                .substring(0, 24)}
-                                        </td>
-                                        <td className={classes.cell}>
-                                            {historyDog.breed}
-                                        </td>
-                                        <td className={classes.cell}>
-                                            <img
-                                                src={historyDog.image}
-                                                className={classes.previewImage}
-                                            />
-                                        </td>
-                                    </tr>
-                                ))}
+                            {mockHistoryDogs.map((historyDog) => (
+                                <tr
+                                    key={historyDog.id}
+                                    className={cx(classes.row)}
+                                    onClick={() => onRowClick(historyDog)}
+                                >
+                                    <td className={classes.cell}>
+                                        {new Date(historyDog.timestamp)
+                                            .toString()
+                                            .substring(0, 24)}
+                                    </td>
+                                    <td className={classes.cell}>
+                                        {historyDog.breed}
+                                    </td>
+                                    <td className={classes.cell}>
+                                        <img
+                                            src={historyDog.image}
+                                            className={classes.previewImage}
+                                        />
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 }

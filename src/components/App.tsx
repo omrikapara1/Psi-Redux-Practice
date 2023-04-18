@@ -1,3 +1,5 @@
+import Tooltip from '@mui/material/Tooltip';
+
 import { useStyles } from './AppStyles';
 import { DogCard } from './DogCard/DogCard';
 import { FinderCard } from './FinderCard/FinderCard';
@@ -14,9 +16,11 @@ const App = () => {
                 <DogCard />
                 <HistoryCard />
             </div>
-            <div className={classes.credit}>
-                {'© Omri Kapara & Eran Tagansky'}
-            </div>
+            <Tooltip title='good luck 👍'>
+                <div className={classes.credit}>
+                    {'© Omri Kapara & Eran Tagansky'}
+                </div>
+            </Tooltip>
         </div>
     );
 };

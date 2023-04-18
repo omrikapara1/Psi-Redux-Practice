@@ -1,39 +1,19 @@
 import Typography from '@mui/material/Typography';
 import { CircularProgress } from '@mui/material';
 
-import { DogData } from 'models/interfaces/DogData';
-import { useAppDispatch, useAppSelector } from 'store/store';
-import { currentLoadingState } from 'store/slices/currentDog';
-
 import { useStyles } from './DogCardStyles';
 
 export const DogCard = () => {
     const { classes, cx } = useStyles();
-    const currentDogData = useAppSelector((state) => state.currentDog.data);
-    const loading = useAppSelector((state) => state.currentDog.loading);
-    const errorMessage = useAppSelector(
-        (state) => state.currentDog.errorMessage
-    );
-    const dispatch = useAppDispatch();
 
-    const Title = () => (
-        <>
-            {loading
-                ? 'loading...'
-                : currentDogData && !errorMessage
-                ? currentDogData.breed
-                : 'No breed...'}
-        </>
-    );
+    const Title = () => <>*BREED NAME*</>;
 
-    const Image = ({ currentDogData }: { currentDogData: DogData }) => (
+    const Image = ({}: {}) => (
         <img
             alt='doggo'
             className={classes.img}
-            onLoad={() => {
-                dispatch(currentLoadingState({ loading: false }));
-            }}
-            src={currentDogData.image}
+            onLoad={() => {}}
+            // src={}
         />
     );
 
@@ -66,18 +46,7 @@ export const DogCard = () => {
             <Typography className={classes.breed}>
                 <Title />
             </Typography>
-            <div className={classes.image}>
-                {currentDogData ? (
-                    <>
-                        <Image currentDogData={currentDogData} />
-                        {loading && <MyCircularProgress />}
-                    </>
-                ) : errorMessage ? (
-                    <ErrorMessage errorMessage={errorMessage} />
-                ) : (
-                    <Wait />
-                )}
-            </div>
+            <div className={classes.image}></div>
         </div>
     );
 };
