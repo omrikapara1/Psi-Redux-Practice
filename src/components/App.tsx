@@ -1,9 +1,9 @@
-import { useStyles } from './homePageStyles';
+import { useStyles } from './AppStyles';
 import { DogCard } from './DogCard/DogCard';
 import { FinderCard } from './FinderCard/FinderCard';
 import { HistoryCard } from './HistoryCard/HistoryCard';
 
-const HomePage = () => {
+const App = () => {
     const { classes } = useStyles();
 
     return (
@@ -21,4 +21,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default App;
