@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import { CircularProgress } from '@mui/material';
 
-import { currentLoadingState } from 'store/slices/currentDog';
+import { DogData, currentLoadingState } from 'store/slices/currentDog';
 import { useAppDispatch, useAppSelector } from 'store/store';
 
 import { useStyles } from './DogCardStyles';
@@ -15,50 +15,66 @@ export const DogCard = () => {
     );
     const dispatch = useAppDispatch();
 
+    const Title = () => (
+        <>
+            {loading
+                ? 'loading...'
+                : currentDogData && !errorMessage
+                ? currentDogData.breed
+                : 'No breed...'}
+        </>
+    );
+
+    const Image = ({ currentDogData }: { currentDogData: DogData }) => (
+        <img
+            alt='doggo'
+            className={classes.img}
+            onLoad={() => {
+                dispatch(currentLoadingState({ loading: false }));
+            }}
+            src={currentDogData.image}
+        />
+    );
+
+    const MyCircularProgress = () => (
+        <CircularProgress
+            size='80px'
+            color='primary'
+            className={classes.imageLoading}
+        />
+    );
+
+    const ErrorMessage = ({ errorMessage }: { errorMessage: string }) => (
+        <Typography>{errorMessage}</Typography>
+    );
+
+    const Wait = () => (
+        <>
+            <img
+                className={cx(classes.img, classes.waitImg)}
+                src={'https://media.tenor.com/13VnwKt5qS0AAAAd/waiting.gif'}
+            />
+            <Typography className={classes.waitText}>
+                Waiting for doggo search...
+            </Typography>
+        </>
+    );
+
     return (
         <div className={classes.root}>
             <Typography className={classes.breed}>
-                {loading
-                    ? 'loading...'
-                    : currentDogData && !errorMessage
-                    ? currentDogData.breed
-                    : 'No breed...'}
+                <Title />
             </Typography>
             <div className={classes.image}>
                 {currentDogData ? (
                     <>
-                        <img
-                            alt='doggo'
-                            className={classes.img}
-                            onLoad={() => {
-                                dispatch(
-                                    currentLoadingState({ loading: false })
-                                );
-                            }}
-                            src={currentDogData.image}
-                        />
-                        {loading && (
-                            <CircularProgress
-                                size='80px'
-                                color='primary'
-                                className={classes.imageLoading}
-                            />
-                        )}
+                        <Image currentDogData={currentDogData} />
+                        {loading && <MyCircularProgress />}
                     </>
                 ) : errorMessage ? (
-                    <Typography>{errorMessage}</Typography>
+                    <ErrorMessage errorMessage={errorMessage} />
                 ) : (
-                    <>
-                        <img
-                            className={cx(classes.img, classes.waitImg)}
-                            src={
-                                'https://media.tenor.com/13VnwKt5qS0AAAAd/waiting.gif'
-                            }
-                        />
-                        <Typography className={classes.waitText}>
-                            Waiting for doggo search...
-                        </Typography>
-                    </>
+                    <Wait />
                 )}
             </div>
         </div>

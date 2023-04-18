@@ -4,8 +4,6 @@ export const useStyles = makeStyles({
     name: 'dogCard',
 })({
     root: {
-        // minWidth: 500,
-        // minHeight: 500,
         minWidth: '50vmin',
         minHeight: '50vmin',
     },
@@ -34,7 +32,6 @@ export const useStyles = makeStyles({
         height: '50vmin',
         position: 'absolute',
         transition: 'transform 100000s ease',
-        // transition: 'transform 100000s cubic-bezier(0.4, 0, 0.55, 0.11)',
         '&:hover': {
             transform: 'scale(100)',
         },
@@ -46,6 +43,6 @@ export const useStyles = makeStyles({
         position: 'absolute',
     },
     waitImg: {
-        opacity: 0.1
-    }
+        opacity: 0.1,
+    },
 });

@@ -50,7 +50,7 @@ export const FinderCard = () => {
                 const dogBreed = getDogBreed(result.message);
                 const id = uuidv4();
                 const dogData = { image: result.message, breed: dogBreed, id };
-                
+
                 dispatch(setCurrentData(dogData));
                 dispatch(addDogToHistory(dogData));
             } else {
@@ -63,6 +63,15 @@ export const FinderCard = () => {
     const dogSelectChange = (event: any) => {
         setDogName(event.target.value);
     };
+
+    const ButtonText = () =>
+        isLoading ? (
+            <CircularProgress color='secondary' />
+        ) : dogName ? (
+            <Typography>get {dogName} doggo</Typography>
+        ) : (
+            <Typography>get random doggo</Typography>
+        );
 
     return (
         <div className={classes.root}>
@@ -90,13 +99,7 @@ export const FinderCard = () => {
                     size='large'
                     color='primary'
                 >
-                    {isLoading ? (
-                        <CircularProgress color='secondary'></CircularProgress>
-                    ) : dogName ? (
-                        <Typography>get {dogName} doggo</Typography>
-                    ) : (
-                        <Typography>get random doggo</Typography>
-                    )}
+                    <ButtonText />
                 </Button>
             </div>
         </div>
