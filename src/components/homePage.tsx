@@ -1,5 +1,3 @@
-import { Container } from '@mui/material';
-
 import { useStyles } from './homePageStyles';
 import { DogCard } from './DogCard/DogCard';
 import { FinderCard } from './FinderCard/FinderCard';

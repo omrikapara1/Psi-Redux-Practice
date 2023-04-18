@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from 'store/store';
 import { historyDogData, resetHistory } from 'store/slices/dogHistory';
 import { resetCurrent, setCurrentData } from 'store/slices/currentDog';
 
-import { useStyles } from './HistoryStyles';
+import { useStyles } from './HistoryCardStyles';
 
 export const HistoryCard = () => {
     const { classes, cx } = useStyles();
