@@ -1,10 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-export interface DogData {
-    id: string;
-    image: string;
-    breed: string;
-}
+import { DogData } from 'models/interfaces/DogData';
 
 export interface CurrentDogState {
     data?: DogData;
@@ -17,8 +13,6 @@ const initialDogState: CurrentDogState = {
     loading: false,
     errorMessage: '',
 };
-
-// const getDogId = (dog:CurrentDogState):string=> (dog.)
 
 const currentDog = createSlice({
     name: 'currentDog',

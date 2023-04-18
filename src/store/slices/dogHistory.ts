@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { DogData } from './currentDog';
+import { DogData } from 'models/interfaces/DogData';
 
 export interface historyDogData extends DogData {
     timestamp: number;

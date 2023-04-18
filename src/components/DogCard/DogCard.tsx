@@ -1,8 +1,9 @@
 import Typography from '@mui/material/Typography';
 import { CircularProgress } from '@mui/material';
 
-import { DogData, currentLoadingState } from 'store/slices/currentDog';
+import { DogData } from 'models/interfaces/DogData';
 import { useAppDispatch, useAppSelector } from 'store/store';
+import { currentLoadingState } from 'store/slices/currentDog';
 
 import { useStyles } from './DogCardStyles';
 
