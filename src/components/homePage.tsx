@@ -1,9 +1,9 @@
 import { Container } from '@mui/material';
 
 import { useStyles } from './homePageStyles';
-import { DogCard } from './body/DogCard';
-import { FinderCard } from './body/FinderCard';
-import { HistoryCard } from './body/HistoryCard';
+import { DogCard } from './DogCard/DogCard';
+import { FinderCard } from './FinderCard/FinderCard';
+import { HistoryCard } from './HistoryCard/HistoryCard';
 
 const HomePage = () => {
     const { classes } = useStyles();
