@@ -1,9 +1,8 @@
 import Typography from '@mui/material/Typography';
 
 import { useStyles } from './HistoryCardStyles';
-import { HistoryDogData } from 'models/interfaces/HistoryDogData';
 
-const mockHistoryDogs: HistoryDogData[] = [
+const mockHistoryDogs = [
     {
         id: '3',
         breed: 'ridgeback-rhodesian',
@@ -27,10 +26,6 @@ const mockHistoryDogs: HistoryDogData[] = [
 export const HistoryCard = () => {
     const { classes, cx } = useStyles();
 
-    const onRowClick = (historyDog: HistoryDogData) => {};
-
-    const onReset = () => {};
-
     return (
         <div className={classes.root}>
             <div>
@@ -53,7 +48,7 @@ export const HistoryCard = () => {
                                 <tr
                                     key={historyDog.id}
                                     className={cx(classes.row)}
-                                    onClick={() => onRowClick(historyDog)}
+                                    // onClick={}
                                 >
                                     <td className={classes.cell}>
                                         {new Date(historyDog.timestamp)
@@ -76,7 +71,11 @@ export const HistoryCard = () => {
                 }
             </div>
             <div className={classes.actions}>
-                <button onClick={onReset}>Reset History</button>
+                <button
+                // onClick={}
+                >
+                    Reset History
+                </button>
             </div>
         </div>
     );
